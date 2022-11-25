@@ -160,12 +160,12 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 {
     [super viewDidLoad];
     
-    objc_setAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke), ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            printf("event\n");
-        });
-    }, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self.manualHUDSegmentedControl addTarget:objc_getAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke)) action:@selector(invoke) forControlEvents:UIControlEventAllEvents];
+//    objc_setAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            printf("event\n");
+//        });
+//    }, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    [self.manualHUDSegmentedControl addTarget:objc_getAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke)) action:@selector(invoke) forControlEvents:UIControlEventAllEvents];
     
     self.session = [[AVCaptureSession alloc] init];
     
