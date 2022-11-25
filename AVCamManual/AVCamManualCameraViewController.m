@@ -17,6 +17,9 @@
 #import "AVCamManualPreviewView.h"
 #import "AVCamManualAppDelegate.h"
 
+#import <objc/runtime.h>
+#import <objc/NSObjCRuntime.h>
+
 static void * SessionRunningContext = &SessionRunningContext;
 static void * FocusModeContext = &FocusModeContext;
 static void * ExposureModeContext = &ExposureModeContext;
@@ -49,12 +52,8 @@ typedef NS_ENUM( NSInteger, AVCamManualCaptureMode ) {
 @property (nonatomic, weak) IBOutlet UIImageView * cameraUnavailableImageView;
 @property (nonatomic, weak) IBOutlet UIButton *resumeButton;
 @property (nonatomic, weak) IBOutlet UIButton *recordButton;
-//@property (nonatomic, weak) IBOutlet UIButton *cameraButton;
-//@property (nonatomic, weak) IBOutlet UIButton *photoButton;
 @property (nonatomic, weak) IBOutlet UIButton *HUDButton;
-
 @property (nonatomic, weak) IBOutlet UIView *manualHUD;
-
 @property (nonatomic, weak) IBOutlet UIView *controlsView;
 
 @property (nonatomic) NSArray *focusModes;
@@ -160,6 +159,13 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    objc_setAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            printf("event\n");
+        });
+    }, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self.manualHUDSegmentedControl addTarget:objc_getAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke)) action:@selector(invoke) forControlEvents:UIControlEventAllEvents];
     
     self.session = [[AVCaptureSession alloc] init];
     
@@ -334,7 +340,7 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
             //            self.videoDevice.focusMode == AVCaptureFocusModeContinuousAutoFocus && [self.videoDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus];
             
             // Manual exposure controls
-            self.exposureModes = @[@(AVCaptureExposureModeContinuousAutoExposure), @(AVCaptureExposureModeLocked), @(AVCaptureExposureModeCustom)];
+            self.exposureModes = @[@(AVCaptureExposureModeContinuousAutoExposure), @(AVCaptureExposureModeCustom)];
             self.exposureModeControl.enabled = ( self.videoDevice != nil );
             [self.exposureModeControl setSelectedSegmentIndex:0];
             for ( NSNumber *mode in self.exposureModes ) {
@@ -825,7 +831,7 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 {
     @try {
         __autoreleasing NSError *error;
-        if ([_videoDevice lockForConfiguration:&error] && ([[NSProcessInfo processInfo] thermalState] != NSProcessInfoThermalStateCritical && [[NSProcessInfo processInfo] thermalState] != NSProcessInfoThermalStateSerious)) {
+        if ([_videoDevice lockForConfiguration:&error] && ([[NSProcessInfo processInfo] thermalState] != NSProcessInfoThermalStateCritical || [[NSProcessInfo processInfo] thermalState] != NSProcessInfoThermalStateSerious)) {
             if (sender.value != 0)
                 [self->_videoDevice setTorchModeOnWithLevel:sender.value error:&error];
             else

@@ -27,4 +27,6 @@ static double (^ _Nonnull rescale_value)(double, double, double, double, double)
 @property (nonatomic) AVCaptureMovieFileOutput * _Nullable movieFileOutput;
 - (void)captureOutput:(AVCaptureFileOutput * _Nullable)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL * _Nonnull)outputFileURL fromConnections:(NSArray * _Nonnull)connections error:(NSError * _Nullable)error;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *manualHUDSegmentedControl;
+
 @end
