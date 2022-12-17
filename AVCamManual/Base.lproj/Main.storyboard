@@ -222,7 +222,7 @@
                                                         <rect key="frame" x="0.0" y="76" width="984" height="120"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ByW-l1-Apr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="183.5" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="120"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHR-0M-PTU">
                                                                         <rect key="frame" x="0.0" y="0.0" width="55.5" height="60"/>
@@ -245,10 +245,10 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-XX-aSD">
-                                                                <rect key="frame" x="191.5" y="0.0" width="776" height="120"/>
+                                                                <rect key="frame" x="179.5" y="0.0" width="788" height="120"/>
                                                                 <subviews>
                                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-CN-WmZ">
-                                                                        <rect key="frame" x="-2" y="0.0" width="780" height="61"/>
+                                                                        <rect key="frame" x="-2" y="0.0" width="792" height="61"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="2VB-tp-NOU"/>
                                                                         </constraints>
@@ -261,7 +261,7 @@
                                                                         </connections>
                                                                     </slider>
                                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eau-wv-dU0">
-                                                                        <rect key="frame" x="-2" y="60" width="780" height="61"/>
+                                                                        <rect key="frame" x="-2" y="60" width="792" height="61"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="PTR-b2-7R3"/>
                                                                         </constraints>
@@ -650,6 +650,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sS-pb-l0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="hP6-wY-leu" customClass="AVCamManualAppDelegate">
+                    <connections>
+                        <outlet property="movieAppEventDelegate" destination="zFy-Vn-e8f" id="yNs-Ks-4dU"/>
+                    </connections>
+                </customObject>
                 <tapGestureRecognizer id="CON-0p-q28"/>
             </objects>
             <point key="canvasLocation" x="1257.9710144927537" y="454.6875"/>

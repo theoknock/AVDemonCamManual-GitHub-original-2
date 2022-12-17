@@ -22,10 +22,14 @@ static double (^ _Nonnull rescale_value)(double, double, double, double, double)
     return (new_value_max - new_value_min) * (value - value_min) / (value_max - value_min) + new_value_min;
 };
 
-@interface AVCamManualCameraViewController : UIViewController
+@class AVCamManualAppDelegate;
+
+@interface AVCamManualCameraViewController : UIViewController <MovieAppEventDelegate>
 
 @property (nonatomic) AVCaptureMovieFileOutput * _Nullable movieFileOutput;
 - (void)captureOutput:(AVCaptureFileOutput * _Nullable)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL * _Nonnull)outputFileURL fromConnections:(NSArray * _Nonnull)connections error:(NSError * _Nullable)error;
+
+- (IBAction)toggleMovieRecording:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *manualHUDSegmentedControl;
 

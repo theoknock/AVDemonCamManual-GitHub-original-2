@@ -24,20 +24,11 @@ didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *
     return (AVCamManualAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
-- (id<MovieAppEventDelegate>)movieAppEventDelegate
-{
-    return self.movieAppEventDelegate;
-}
-
-- (void)setMovieAppEventDelegate:(id<MovieAppEventDelegate>)movieAppEventDelegate
-{
-    self.movieAppEventDelegate = movieAppEventDelegate;
-}
-
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     dispatch_async( self.sessionQueue, ^{
-        [self.movieAppEventDelegate.movieFileOutput stopRecording];
+        if ([self.movieAppEventDelegate.movieFileOutput isRecording])
+           [self.movieAppEventDelegate toggleMovieRecording:nil];
     });
 }
 
