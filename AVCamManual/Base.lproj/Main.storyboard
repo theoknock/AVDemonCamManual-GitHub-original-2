@@ -107,7 +107,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="984" height="1277"/>
                                                 <subviews>
                                                     <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" minimumValueImage="light.min" catalog="system" maximumValueImage="light.max" translatesAutoresizingMaskIntoConstraints="NO" id="VNK-3C-FPF">
-                                                        <rect key="frame" x="-2" y="1282" width="378" height="61"/>
+                                                        <rect key="frame" x="-2" y="1252" width="988" height="91"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="90" id="E0U-jD-lGn"/>
                                                         </constraints>
@@ -122,7 +122,9 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="VNK-3C-FPF" firstAttribute="leading" secondItem="XXb-cy-BED" secondAttribute="leading" id="1Bw-hl-94x"/>
                                                     <constraint firstItem="VNK-3C-FPF" firstAttribute="width" secondItem="XXb-cy-BED" secondAttribute="width" id="N9f-1M-MbH"/>
+                                                    <constraint firstItem="VNK-3C-FPF" firstAttribute="trailing" secondItem="XXb-cy-BED" secondAttribute="trailing" id="PFy-A5-Po0"/>
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-ZD-uoq">
@@ -222,10 +224,10 @@
                                                         <rect key="frame" x="0.0" y="76" width="984" height="120"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ByW-l1-Apr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="27.5" height="120"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHR-0M-PTU">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="55.5" height="60"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="27.5" height="60"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="BMy-oJ-S0S"/>
                                                                         </constraints>
@@ -245,10 +247,10 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-XX-aSD">
-                                                                <rect key="frame" x="179.5" y="0.0" width="788" height="120"/>
+                                                                <rect key="frame" x="35.5" y="0.0" width="932" height="120"/>
                                                                 <subviews>
                                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-CN-WmZ">
-                                                                        <rect key="frame" x="-2" y="0.0" width="792" height="61"/>
+                                                                        <rect key="frame" x="-2" y="0.0" width="936" height="61"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="2VB-tp-NOU"/>
                                                                         </constraints>
@@ -261,7 +263,7 @@
                                                                         </connections>
                                                                     </slider>
                                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eau-wv-dU0">
-                                                                        <rect key="frame" x="-2" y="60" width="792" height="61"/>
+                                                                        <rect key="frame" x="-2" y="60" width="936" height="61"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="PTR-b2-7R3"/>
                                                                         </constraints>
@@ -310,7 +312,7 @@
                                                     <constraint firstItem="1Kg-CX-hzU" firstAttribute="top" secondItem="vvO-Ky-Czn" secondAttribute="bottom" constant="8" symbolic="YES" id="Wdk-Ca-DVS"/>
                                                     <constraint firstItem="vvO-Ky-Czn" firstAttribute="leading" secondItem="iQT-Nx-cHE" secondAttribute="leading" id="fRD-wZ-o6a"/>
                                                     <constraint firstAttribute="trailing" secondItem="vvO-Ky-Czn" secondAttribute="trailing" id="paL-Oo-UDw"/>
-                                                    <constraint firstItem="vvO-Ky-Czn" firstAttribute="top" secondItem="iQT-Nx-cHE" secondAttribute="top" constant="20" symbolic="YES" id="xrg-se-d65"/>
+                                                    <constraint firstAttribute="top" secondItem="vvO-Ky-Czn" secondAttribute="top" constant="-20" symbolic="YES" id="xrg-se-d65"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -321,8 +323,8 @@
                                             <view hidden="YES" opaque="NO" alpha="0.0" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCR-0s-Q5n" userLabel="ManualHUD Video Zoom Factor View">
                                                 <rect key="frame" x="0.0" y="0.0" width="984" height="1277"/>
                                                 <subviews>
-                                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" minimumValueImage="magnifyingglass" catalog="system" maximumValueImage="plus.magnifyingglass" translatesAutoresizingMaskIntoConstraints="NO" id="uyM-gg-aDC" userLabel="Zoom Factor Slider">
-                                                        <rect key="frame" x="0.0" y="1" width="374" height="65"/>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" minimumValueImage="magnifyingglass" catalog="system" maximumValueImage="plus.magnifyingglass" translatesAutoresizingMaskIntoConstraints="NO" id="uyM-gg-aDC" userLabel="Zoom Factor Slider">
+                                                        <rect key="frame" x="-2" y="0.0" width="988" height="91"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="90" id="AON-Wk-Kxy"/>
                                                         </constraints>
@@ -337,7 +339,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="uyM-gg-aDC" secondAttribute="trailing" id="EaC-OW-roe"/>
+                                                    <constraint firstItem="uyM-gg-aDC" firstAttribute="leading" secondItem="tCR-0s-Q5n" secondAttribute="leading" id="UqR-HB-bRq"/>
                                                     <constraint firstItem="uyM-gg-aDC" firstAttribute="width" secondItem="tCR-0s-Q5n" secondAttribute="width" id="bYV-mS-mKq"/>
+                                                    <constraint firstItem="uyM-gg-aDC" firstAttribute="top" secondItem="tCR-0s-Q5n" secondAttribute="top" id="pbA-zc-jvX"/>
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" opaque="NO" alpha="0.0" tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puZ-nU-nwq" userLabel="ManualHUD White Balance View">
@@ -434,8 +439,8 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="Pez-TP-eVs" firstAttribute="width" secondItem="puZ-nU-nwq" secondAttribute="width" id="4kI-dd-UUi"/>
                                                     <constraint firstItem="Pez-TP-eVs" firstAttribute="leading" secondItem="puZ-nU-nwq" secondAttribute="leading" id="5Mf-xJ-g5x"/>
-                                                    <constraint firstItem="Pez-TP-eVs" firstAttribute="centerX" secondItem="puZ-nU-nwq" secondAttribute="centerX" id="Hsq-sn-XNq"/>
                                                     <constraint firstItem="Pez-TP-eVs" firstAttribute="trailing" secondItem="puZ-nU-nwq" secondAttribute="trailing" id="TKd-k3-ff5"/>
                                                 </constraints>
                                             </view>
@@ -523,14 +528,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" preferredBehavioralStyle="pad" translatesAutoresizingMaskIntoConstraints="NO" id="pSZ-Pn-wAW" userLabel="HUD Display Button">
-                                <rect key="frame" x="123.5" y="1275" width="60" height="60"/>
+                                <rect key="frame" x="112" y="1275" width="83.5" height="60"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" button="YES" image="YES" updatesFrequently="YES"/>
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="UTL-ck-mMJ"/>
-                                    <constraint firstAttribute="width" constant="60" id="lyq-r7-WDm"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
