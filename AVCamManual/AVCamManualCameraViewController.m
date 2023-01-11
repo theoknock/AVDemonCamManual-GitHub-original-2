@@ -160,12 +160,12 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 {
     [super viewDidLoad];
     
-//    objc_setAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke), ^{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            printf("event\n");
-//        });
-//    }, OBJC_ASSOCIATION_RETAIN_NONstopATOMIC);
-//    [self.manualHUDSegmentedControl addTarget:objc_getAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke)) action:@selector(invoke) forControlEvents:UIControlEventAllEvents];
+    //    objc_setAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke), ^{
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            printf("event\n");
+    //        });
+    //    }, OBJC_ASSOCIATION_RETAIN_NONstopATOMIC);
+    //    [self.manualHUDSegmentedControl addTarget:objc_getAssociatedObject(self.manualHUDSegmentedControl, @selector(invoke)) action:@selector(invoke) forControlEvents:UIControlEventAllEvents];
     
     self.session = [[AVCaptureSession alloc] init];
     
@@ -308,13 +308,7 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
-- (BOOL)shouldAutorotate
-{
-    // Disable autorotation of the interface when recording is in progress
-    return FALSE;// ! self.movieFileOutput.isRecording;
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -336,7 +330,7 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
             self.lensPositionSlider.minimumValue = 0.0;
             self.lensPositionSlider.maximumValue = 1.0;
             self.lensPositionSlider.value = 0.0;
-            [self changeFocusMode:nil];
+            [self changeFocusMode:self.focusModeControl];
             //            self.videoDevice.focusMode == AVCaptureFocusModeContinuousAutoFocus && [self.videoDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus];
             
             // Manual exposure controls
@@ -346,8 +340,8 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
             for ( NSNumber *mode in self.exposureModes ) {
                 [self.exposureModeControl setEnabled:[self.videoDevice isExposureModeSupported:mode.intValue] forSegmentAtIndex:[self.exposureModes indexOfObject:mode]];
             }
-            [self changeExposureMode:nil];
-
+            [self changeExposureMode:self.exposureModeControl];
+            
             // Use 0-1 as the slider range and do a non-linear mapping from the slider value to the actual device exposure duration
             self.exposureDurationSlider.minimumValue = 0;
             self.exposureDurationSlider.maximumValue = 1;
@@ -398,6 +392,8 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
             AVCaptureWhiteBalanceGains whiteBalanceGains = self.videoDevice.deviceWhiteBalanceGains;
             AVCaptureWhiteBalanceTemperatureAndTintValues whiteBalanceTemperatureAndTint = [self.videoDevice temperatureAndTintValuesForDeviceWhiteBalanceGains:whiteBalanceGains];
             
+//            temp (yellow/blue) and tint (magenta/green)
+            
             self.temperatureSlider.minimumValue = 3000;
             self.temperatureSlider.maximumValue = 8000; //self.videoDevice.maxWhiteBalanceGain;
             self.temperatureSlider.value = whiteBalanceTemperatureAndTint.temperature;
@@ -445,36 +441,35 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 }
 
 - (IBAction)changeManualHUDSelection:(UISegmentedControl *)sender {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     for (UIView * view in self.controlsView.subviews) {
         BOOL shouldHide = (view.tag == sender.selectedSegmentIndex) ? !view.hidden : TRUE;
         view.hidden = shouldHide;
         [view setAlpha:!shouldHide];
     };
     
-//    switch (sender.selectedSegmentIndex) {
-//        case 0:
-//            self.manualHUDTorchLevelView.hidden = !self.manualHUDTorchLevelView.hidden;
-//            break;
-//        case 1:
-//            self.manualHUDTorchLevelView.hidden = !self.manualHUDTorchLevelView.hidden;
-//            break;
-//        case 2:
-//            self.manualHUDFocusView.hidden = !self.manualHUDFocusView.hidden;
-//            break;
-//        case 3:
-//            self.manualHUDExposureView.hidden = !self.manualHUDExposureView.hidden;
-//            break;
-//        case 4:
-//            self.manualHUDVideoZoomFactorView.hidden = !self.manualHUDVideoZoomFactorView.hidden;
-//            break;
-//        case 5:
-//            self.manualHUDWhiteBalanceView.hidden = !self.manualHUDWhiteBalanceView.hidden;
-//            break;
-//
-//        default:
-//            self.manualHUD.hidden = !self.manualHUD.hidden;
-//    }
+    //    switch (sender.selectedSegmentIndex) {
+    //        case 0:
+    //            self.manualHUDTorchLevelView.hidden = !self.manualHUDTorchLevelView.hidden;
+    //            break;
+    //        case 1:
+    //            self.manualHUDTorchLevelView.hidden = !self.manualHUDTorchLevelView.hidden;
+    //            break;
+    //        case 2:
+    //            self.manualHUDFocusView.hidden = !self.manualHUDFocusView.hidden;
+    //            break;
+    //        case 3:
+    //            self.manualHUDExposureView.hidden = !self.manualHUDExposureView.hidden;
+    //            break;
+    //        case 4:
+    //            self.manualHUDVideoZoomFactorView.hidden = !self.manualHUDVideoZoomFactorView.hidden;
+    //            break;
+    //        case 5:
+    //            self.manualHUDWhiteBalanceView.hidden = !self.manualHUDWhiteBalanceView.hidden;
+    //            break;
+    //
+    //        default:
+    //            self.manualHUD.hidden = !self.manualHUD.hidden;
+    //    }
 }
 
 - (void)setSlider:(UISlider *)slider highlightColor:(UIColor *)color
@@ -568,15 +563,11 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
         }
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            
-            UIInterfaceOrientation statusBarOrientation = [UIApplication sharedApplication].statusBarOrientation;
-            AVCaptureVideoOrientation initialVideoOrientation = AVCaptureVideoOrientationPortrait;
-            if ( statusBarOrientation != UIInterfaceOrientationUnknown ) {
-                initialVideoOrientation = (AVCaptureVideoOrientation)statusBarOrientation;
+            UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+            if ( UIDeviceOrientationIsPortrait( deviceOrientation ) || UIDeviceOrientationIsLandscape( deviceOrientation ) ) {
+                AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
+                previewLayer.connection.videoOrientation = (AVCaptureVideoOrientation)deviceOrientation;
             }
-            
-            AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
-            previewLayer.connection.videoOrientation = initialVideoOrientation;
         } );
     }
     else {
@@ -811,13 +802,7 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
     double p = pow( control.value, kExposureDurationPower ); // Apply power function to expand slider's low-end range
     double minDurationSeconds = MAX( CMTimeGetSeconds( self.videoDevice.activeFormat.minExposureDuration ), kExposureMinimumDuration );
     double maxDurationSeconds = 1.0/3.0;//CMTimeGetSeconds( self.videoDevice.activeFormat.maxExposureDuration );
-    double newDurationSeconds = p * ( maxDurationSeconds - minDurationSeconds ) + minDurationSeconds; // Scale from 0-1 slider range to actual duration
-    //    if (newDurationSeconds > 0.330918 && newDurationSeconds < 0.357056)
-    //    {
-    //        NSLog(@"newDurationSeconds\t%f", newDurationSeconds);
-    //        double newDurationSeconds = 0.3309180;
-    //    }
-    
+    double newDurationSeconds = p * ( maxDurationSeconds - minDurationSeconds ) + minDurationSeconds; // Scale from 0-1
     if ( [self.videoDevice lockForConfiguration:&error] ) {
         [self.videoDevice setExposureModeCustomWithDuration:CMTimeMakeWithSeconds( newDurationSeconds, 1000*1000*1000 )  ISO:AVCaptureISOCurrent completionHandler:nil];
         [self.videoDevice unlockForConfiguration];
@@ -961,6 +946,11 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
 - (IBAction)lockWithGrayWorld:(id)sender
 {
     [self setWhiteBalanceGains:self.videoDevice.grayWorldDeviceWhiteBalanceGains];
+    
+    AVCaptureWhiteBalanceTemperatureAndTintValues whiteBalanceTemperatureAndTint = [self.videoDevice temperatureAndTintValuesForDeviceWhiteBalanceGains:self.videoDevice.deviceWhiteBalanceGains];
+    
+    self.tintSlider.value = whiteBalanceTemperatureAndTint.tint;
+    self.temperatureSlider.value = whiteBalanceTemperatureAndTint.temperature;
 }
 
 - (AVCaptureWhiteBalanceGains)normalizedGains:(AVCaptureWhiteBalanceGains)gains
@@ -977,127 +967,6 @@ static const double kVideoZoomFactorPowerCoefficient = 3.333f; // Higher numbers
     
     return g;
 }
-
-//- (AVCaptureWhiteBalanceGains)normalizedGains:(AVCaptureWhiteBalanceGains)gains
-//{
-//    AVCaptureWhiteBalanceGains g = gains;
-//
-//    g.redGain = MIN( 1.0, self.videoDevice.maxWhiteBalanceGain );
-//    g.greenGain = MIN( 1.0, self.videoDevice.maxWhiteBalanceGain );
-//    g.blueGain = MIN( 1.0, self.videoDevice.maxWhiteBalanceGain );
-//
-//        g.redGain = MIN( self.videoDevice.maxWhiteBalanceGain, g.redGain );
-//        g.greenGain = MIN( self.videoDevice.maxWhiteBalanceGain, g.greenGain );
-//        g.blueGain = MIN( self.videoDevice.maxWhiteBalanceGain, g.blueGain );
-//
-//    return g;
-//}
-
-- (void)resetAppDefaults
-{
-    NSLog(@"%s\n", __PRETTY_FUNCTION__);
-    // Set camera settings to app defaults
-    //            dispatch_async( self.sessionQueue, ^{
-    //                [self.videoDevice lockForConfiguration:nil];
-    //                [self.session beginConfiguration];
-    //                //
-    //                for (AVCaptureInput * input in self.session.inputs)
-    //                    [self.session removeInput:input];
-    //                for (AVCaptureOutput * output in self.previewView.session.outputs)
-    //                    [self.session removeOutput:output];
-    //                for (AVCaptureConnection * connection in self.session.connections)
-    //                    [self.session removeConnection:connection];
-    //                [self.session commitConfiguration];
-    //                [self.videoDevice unlockForConfiguration];
-    //                [self.session stopRunning];
-    //                dispatch_async(dispatch_get_main_queue(), ^{
-    //                    [self viewDidLoad];
-    //                });
-    //            [self removeObservers];
-    
-    dispatch_async( dispatch_get_main_queue(), ^{
-        [self configureManualHUD];
-    });
-    //    dispatch_async(dispatch_get_main_queue(), ^{
-    //        [self viewDidLoad];
-    //    });
-}
-
-- (IBAction)setPreset:(UIButton *)sender {
-    //    [self resetAppDefaults];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UISlider *control = self.exposureModeControl;
-        NSError *error = nil;
-        
-        if ( [self.videoDevice lockForConfiguration:&error] ) {
-            self.exposureModeControl.selectedSegmentIndex = 2;
-            [self changeExposureMode:control];
-            [self.videoDevice unlockForConfiguration];
-        }
-        else {
-            NSLog( @"Could not lock device for configuration: %@", error );
-        }
-        
-        control = self.exposureDurationSlider;
-        error = nil;
-        
-        double p = pow( control.value, kExposureDurationPower ); // Apply power function to expand slider's low-end range
-        //        double minDurationSeconds = MAX( CMTimeGetSeconds( self.videoDevice.activeFormat.minExposureDuration ), kExposureMinimumDuration );
-        double maxDurationSeconds = 1.0/3.0;//CMTimeGetSeconds( self.videoDevice.activeFormat.maxExposureDuration );
-        //        double newDurationSeconds = p * ( maxDurationSeconds - minDurationSeconds ) + minDurationSeconds; // Scale from 0-1 slider range to actual duration
-        //    if (newDurationSeconds > 0.330918 && newDurationSeconds < 0.357056)
-        //    {
-        //        NSLog(@"newDurationSeconds\t%f", newDurationSeconds);
-        //        double newDurationSeconds = 0.3309180;
-        //    }
-        
-        if ( [self.videoDevice lockForConfiguration:&error] ) {
-            [self.videoDevice setExposureModeCustomWithDuration:CMTimeMakeWithSeconds( maxDurationSeconds, 1000*1000*1000 )  ISO:AVCaptureISOCurrent completionHandler:nil];
-            [self.videoDevice unlockForConfiguration];
-        }
-        else {
-            NSLog( @"Could not lock device for configuration: %@", error );
-        }
-        
-        self.manualHUD.hidden = FALSE;
-        [self toggleControlViewVisibility:@[self.manualHUDExposureView] hide:NO];
-        //
-        //        control = self.ISOSlider;
-        //        error = nil;
-        //
-        //        if ( [self.videoDevice lockForConfiguration:&error] ) {
-        //            [self.videoDevice setExposureModeCustomWithDuration:AVCaptureExposureDurationCurrent ISO:self.videoDevice.activeFormat.maxISO completionHandler:nil];
-        //            [self.videoDevice unlockForConfiguration];
-        //        }
-        //        else {
-        //            NSLog( @"Could not lock device for configuration: %@", error );
-        //        }
-        //
-        //
-        //        [sender setTag:(sender.tag == 1) ? 0 : 1];
-        //        NSLog(@"sender.tag == %lu\n", sender.tag);
-        //        [self.exposureModeControl setSelectedSegmentIndex:2];
-        //                    [self changeExposureMode:self.exposureModeControl];
-    });
-    //    if (sender.tag == 0)
-    //    {
-    //        // Set camera to optimal exposure duration/ISO settings
-    //        dispatch_async( dispatch_get_main_queue(), ^{
-    ////            [self.videoDevice lockForConfiguration:nil];
-    //
-    ////            [self.ISOSlider setValue:self.ISOSlider.maximumValue];
-    ////            [self.exposureDurationSlider setValue:self.exposureDurationSlider.maximumValue];
-    ////            [self changeISO:self.ISOSlider];
-    ////            [self changeExposureDuration:self.exposureDurationSlider];
-    ////            [self.videoDevice setExposureModeCustomWithDuration:CMTimeMakeWithSeconds( (1.0/3.0), 1000*1000*1000 )
-    ////                                                             ISO:averageISO
-    ////                                               completionHandler:nil];
-    //        });
-    ////            [self.videoDevice unlockForConfiguration];
-    //
-    //    }
-}
-
 
 #pragma mark Recording Movies
 

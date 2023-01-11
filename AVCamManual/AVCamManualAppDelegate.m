@@ -13,7 +13,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions
 {
-    self.sessionQueue = dispatch_queue_create( "session queue", DISPATCH_QUEUE_SERIAL );
+//    self.sessionQueue = dispatch_queue_create( "session queue", DISPATCH_QUEUE_SERIAL );
 
     
     return TRUE;
@@ -26,10 +26,10 @@ didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    dispatch_async( self.sessionQueue, ^{
+//    dispatch_async( self.sessionQueue, ^{
         if ([self.movieAppEventDelegate.movieFileOutput isRecording])
            [self.movieAppEventDelegate toggleMovieRecording:nil];
-    });
+//    });
 }
 
 @end

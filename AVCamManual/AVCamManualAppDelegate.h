@@ -28,6 +28,6 @@
 @property (nonatomic) UIWindow *window;
 @property (weak) IBOutlet id<MovieAppEventDelegate> movieAppEventDelegate;
 
-@property (nonatomic) dispatch_queue_t sessionQueue;
+//@property (nonatomic) dispatch_queue_t sessionQueue;
 
 @end
