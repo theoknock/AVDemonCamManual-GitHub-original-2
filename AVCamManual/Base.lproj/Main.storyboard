@@ -126,12 +126,9 @@
                                                         </imageReference>
                                                         <color key="minimumTrackTintColor" systemColor="systemYellowColor"/>
                                                         <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
+                                                        <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="changeTorchLevel:" destination="zFy-Vn-e8f" eventType="valueChanged" id="MLb-zA-9XB"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="sTD-U2-N2o"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="Epr-pQ-Sst"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="kAU-PU-sce"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="tMw-il-l2k"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
@@ -198,12 +195,11 @@
                                                         </imageReference>
                                                         <color key="minimumTrackTintColor" systemColor="systemYellowColor"/>
                                                         <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
+                                                        <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="changeLensPosition:" destination="zFy-Vn-e8f" eventType="valueChanged" id="0nI-xS-4od"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="NXo-D5-2WL"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="Ja4-wE-g5J"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="Yz0-da-oZU"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="iuJ-25-epB"/>
+                                                            <action selector="magnifyLensPositionSlider:forEvent:" destination="zFy-Vn-e8f" eventType="touchDownRepeat" id="0fy-LC-plF"/>
+                                                            <action selector="restoreLensSlider_:forEvent:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="1f5-jQ-xJc"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
@@ -281,10 +277,6 @@
                                                         <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
                                                         <connections>
                                                             <action selector="changeExposureDuration:" destination="zFy-Vn-e8f" eventType="valueChanged" id="fAn-ix-8Bt"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="vkm-6E-9XU"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="H9q-kt-mKh"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="MN4-t3-coQ"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="eVg-Ge-66q"/>
                                                         </connections>
                                                     </slider>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eau-wv-dU0">
@@ -310,10 +302,6 @@
                                                         <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
                                                         <connections>
                                                             <action selector="changeISO:" destination="zFy-Vn-e8f" eventType="valueChanged" id="8aT-Q3-NNU"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="p1J-OG-LzB"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="2NL-hh-RfA"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="c5g-OX-582"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="zEo-9q-k8h"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
@@ -356,10 +344,6 @@
                                                         <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
                                                         <connections>
                                                             <action selector="changeVideoZoomFactor:" destination="zFy-Vn-e8f" eventType="valueChanged" id="GCd-v8-rDm"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="EpN-Hx-Rbd"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="S5Z-6B-Tsb"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="Ue1-nf-fSb"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="vhl-f1-5T0"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
@@ -405,7 +389,7 @@
                                                         </connections>
                                                     </segmentedControl>
                                                     <slider opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5Y-v1-MKt">
-                                                        <rect key="frame" x="14" y="56" width="318.33333333333331" height="61"/>
+                                                        <rect key="frame" x="6" y="56" width="304.33333333333331" height="61"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="rXE-dO-ejJ"/>
                                                         </constraints>
@@ -415,14 +399,11 @@
                                                         <color key="maximumTrackTintColor" systemColor="systemBlueColor"/>
                                                         <connections>
                                                             <action selector="changeTemperature:" destination="zFy-Vn-e8f" eventType="valueChanged" id="WCB-V6-W6N"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="gWY-kl-KYy"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="PlO-vZ-dD4"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="i4B-nh-i0d"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="lnm-A1-teY"/>
                                                         </connections>
                                                     </slider>
                                                     <slider opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="c2O-fC-f8E">
-                                                        <rect key="frame" x="14" y="108" width="318.33333333333331" height="61"/>
+                                                        <rect key="frame" x="6" y="108" width="304.33333333333331" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="u8G-b5-90l"/>
                                                         </constraints>
@@ -432,14 +413,10 @@
                                                         <color key="maximumTrackTintColor" systemColor="systemGreenColor"/>
                                                         <connections>
                                                             <action selector="changeTint:" destination="zFy-Vn-e8f" eventType="valueChanged" id="Cua-i3-F3g"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchUpOutside" id="LvA-7A-hse"/>
-                                                            <action selector="sliderTouchBegan:" destination="zFy-Vn-e8f" eventType="touchDown" id="hcZ-jY-84E"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchCancel" id="2ga-Za-1Il"/>
-                                                            <action selector="sliderTouchEnded:" destination="zFy-Vn-e8f" eventType="touchUpInside" id="nQY-lY-pLD"/>
                                                         </connections>
                                                     </slider>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XR-0K-p1z" userLabel="GrayWorld Button">
-                                                        <rect key="frame" x="322.33333333333331" y="56" width="35.666666666666686" height="110"/>
+                                                        <rect key="frame" x="300.33333333333331" y="56" width="65.666666666666686" height="110"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="110" id="DaQ-E3-lTS"/>
                                                         </constraints>
@@ -456,17 +433,16 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="1XR-0K-p1z" firstAttribute="trailing" secondItem="Pez-TP-eVs" secondAttribute="trailingMargin" id="5H2-77-w7b"/>
+                                                    <constraint firstItem="1XR-0K-p1z" firstAttribute="right" secondItem="puZ-nU-nwq" secondAttribute="rightMargin" id="5H2-77-w7b"/>
                                                     <constraint firstItem="Pez-TP-eVs" firstAttribute="leading" secondItem="puZ-nU-nwq" secondAttribute="leadingMargin" id="F3U-NH-MAw"/>
                                                     <constraint firstItem="c2O-fC-f8E" firstAttribute="trailing" secondItem="1XR-0K-p1z" secondAttribute="leadingMargin" id="HFc-iW-2jO"/>
                                                     <constraint firstItem="g5Y-v1-MKt" firstAttribute="trailing" secondItem="1XR-0K-p1z" secondAttribute="leadingMargin" id="JJd-sM-kxk"/>
                                                     <constraint firstItem="Pez-TP-eVs" firstAttribute="trailing" secondItem="puZ-nU-nwq" secondAttribute="trailingMargin" id="Xjd-Oh-OVr"/>
-                                                    <constraint firstItem="g5Y-v1-MKt" firstAttribute="leading" secondItem="Pez-TP-eVs" secondAttribute="leadingMargin" id="fdh-bA-hl2"/>
-                                                    <constraint firstItem="c2O-fC-f8E" firstAttribute="leading" secondItem="Pez-TP-eVs" secondAttribute="leadingMargin" id="htf-bz-8zh"/>
+                                                    <constraint firstItem="g5Y-v1-MKt" firstAttribute="left" secondItem="puZ-nU-nwq" secondAttribute="leftMargin" id="fdh-bA-hl2"/>
+                                                    <constraint firstItem="c2O-fC-f8E" firstAttribute="left" secondItem="puZ-nU-nwq" secondAttribute="leftMargin" id="htf-bz-8zh"/>
                                                     <constraint firstItem="1XR-0K-p1z" firstAttribute="top" secondItem="Pez-TP-eVs" secondAttribute="bottomMargin" id="kZ6-oC-KsZ"/>
                                                     <constraint firstItem="g5Y-v1-MKt" firstAttribute="top" secondItem="Pez-TP-eVs" secondAttribute="bottomMargin" id="leV-iK-Gsz"/>
                                                     <constraint firstItem="Pez-TP-eVs" firstAttribute="top" secondItem="puZ-nU-nwq" secondAttribute="topMargin" id="qvC-pb-biG"/>
-                                                    <constraint firstItem="1XR-0K-p1z" firstAttribute="width" secondItem="Pez-TP-eVs" secondAttribute="width" multiplier="0.1" id="s2l-gL-cMu"/>
                                                     <constraint firstItem="c2O-fC-f8E" firstAttribute="top" secondItem="g5Y-v1-MKt" secondAttribute="bottomMargin" id="tNn-d3-gHt"/>
                                                 </constraints>
                                             </view>
